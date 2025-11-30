@@ -1,4 +1,4 @@
-Those effects also works with:
+Those Animations also works with:
 
 `mushroom legacy template card`
 
