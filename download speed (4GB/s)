@@ -1,6 +1,6 @@
-ype: horizontal-stack
+type: horizontal-stack
 cards:
-  - type: custom:mushroom-template-card
+  - type: custom:mushroom-entity-card
     entity: sensor.unifi_dream_machine_downloadsnelheid
     primary: Download
     secondary: >
