@@ -27,7 +27,7 @@ This [YouTube Video](https://youtu.be/SrFbC1ae35E) explains how to do it.
 # Cards:
 
 <details>
-<summary><strong>1</summary>
+<summary><strong>Battery card 1</summary>
 
 ```yaml
 type: custom:mushroom-entity-card
@@ -195,7 +195,7 @@ card_mod:
 </details>
 
 <details>
-<summary><strong>2</summary>
+<summary><strong>Battery card 2</summary>
 
 ```yaml
 type: custom:mushroom-entity-card
@@ -325,7 +325,7 @@ card_mod:
 </details>
 
 <details>
-<summary><strong>3</summary>
+<summary><strong>Battery card 3</summary>
 
 ```yaml
 type: custom:mushroom-entity-card
