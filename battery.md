@@ -20,6 +20,7 @@
 This [YouTube Video](https://youtu.be/SrFbC1ae35E) explains how to do it.
 
 ![gif-16c233439b5ca922](https://github.com/user-attachments/assets/ed91507c-2dc6-4c35-8825-0df2b2b72f69)
+`Loading image... please wait`
 
 <hr>
 
