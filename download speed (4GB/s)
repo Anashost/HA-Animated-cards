@@ -1,0 +1,137 @@
+type: horizontal-stack
+cards:
+  - type: custom:mushroom-entity-card
+    entity: sensor.unifi_dream_machine_downloadsnelheid
+    primary: Download
+    secondary: >
+      {{ states('sensor.unifi_dream_machine_downloadsnelheid') }}
+      {{ state_attr('sensor.unifi_dream_machine_downloadsnelheid','unit_of_measurement') or '' }}
+    icon: mdi:download
+    icon_color: blue
+    tap_action:
+      action: more-info
+    card_mod:
+      style:
+        mushroom-shape-icon$: |
+          .shape {
+            {% set sp_entity = 'sensor.unifi_dream_machine_downloadsnelheid' %}
+            {% set threshold_mbps = 0.05 %}
+            {% set max_speed_mbps = 32000.0 %}  /* 4 GB/s = 32000 Mbps */
+            {% set min_dur = 0.40 %}
+            {% set max_dur = 1.60 %}
+
+            {% set sp = states(sp_entity) | float(0) %}
+            {% set u = state_attr(sp_entity, 'unit_of_measurement') %}
+
+            /* unit -> Mbps */
+            {% if u in ['GB/s','GByte/s'] %}{% set sp = sp * 8000 %}
+            {% elif u in ['GiB/s'] %}{% set sp = sp * 8192 %}
+            {% elif u in ['MB/s','MByte/s'] %}{% set sp = sp * 8 %}
+            {% elif u in ['MiB/s'] %}{% set sp = sp * 8.388608 %}
+            {% elif u in ['kB/s','KB/s'] %}{% set sp = sp * 8 / 1000 %}
+            {% elif u in ['KiB/s'] %}{% set sp = sp * 8 / 1024 %}
+            {% elif u in ['B/s'] %}{% set sp = sp * 8 / 1000000 %}
+            {% elif u in ['Gbps','Gbit/s','Gb/s'] %}{% set sp = sp * 1000 %}
+            {% elif u in ['Mbps','Mbit/s','Mb/s'] %}{% set sp = sp %}
+            {% elif u in ['Kbps','kbps','kbit/s','kb/s'] %}{% set sp = sp / 1000 %}
+            {% elif u in ['bit/s'] %}{% set sp = sp / 1000000 %}
+            {% endif %}
+
+            {% set trigger_active = (sp > threshold_mbps) %}
+
+            {% if trigger_active %}
+              {% set ratio = (sp / max_speed_mbps) if max_speed_mbps > 0 else 0 %}
+              {% set ratio = [0, [ratio, 1] | min] | max %}
+              {% set dur = max_dur - ratio * (max_dur - min_dur) %}
+              {% set dur = [min_dur, [dur, max_dur] | min] | max %}
+
+              --shape-animation: ultra-net {{ dur | round(2) }}s ease-in-out infinite;
+              --glow-animation: ultra-glow {{ (dur * 1.1) | round(2) }}s ease-in-out infinite;
+              --arcs-animation: ultra-arcs {{ ([0.55, (dur * 0.8)] | max) | round(2) }}s linear infinite;
+              opacity: 1;
+            {% else %}
+              --shape-animation: none;
+              --glow-animation: none;
+              --arcs-animation: none;
+              opacity: 0.7;
+            {% endif %}
+
+            transform-origin: 50% 50%;
+            position: relative;
+          }
+
+          .shape::before,
+          .shape::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: inherit;
+            pointer-events: none;
+          }
+
+          .shape::before { animation: var(--glow-animation); }
+          .shape::after  { animation: var(--arcs-animation); }
+
+          @keyframes ultra-net {
+            0%   { transform: scale(1); }
+            25%  { transform: scale(1.05) translateY(-1px); }
+            50%  { transform: scale(1.08) translateY(-2px); }
+            75%  { transform: scale(1.04) translateY(-1px); }
+            100% { transform: scale(1); }
+          }
+
+          @keyframes ultra-glow {
+            0% {
+              box-shadow:
+                0 0 10px 3px rgba(var(--rgb-{{ config.icon_color }}), 0.6),
+                0 0 20px 8px rgba(var(--rgb-{{ config.icon_color }}), 0.3);
+            }
+            50% {
+              box-shadow:
+                0 0 18px 6px rgba(var(--rgb-{{ config.icon_color }}), 0.9),
+                0 0 32px 12px rgba(var(--rgb-{{ config.icon_color }}), 0.4);
+            }
+            100% {
+              box-shadow:
+                0 0 10px 3px rgba(var(--rgb-{{ config.icon_color }}), 0.6),
+                0 0 20px 8px rgba(var(--rgb-{{ config.icon_color }}), 0.3);
+            }
+          }
+
+          @keyframes ultra-arcs {
+            0% {
+              box-shadow:
+                -10px -6px 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.0),
+                12px 4px 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.0);
+            }
+            25% {
+              box-shadow:
+                -10px -6px 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.7),
+                12px 4px 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.4);
+            }
+            50% {
+              box-shadow:
+                -6px 2px 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.3),
+                10px -8px 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.7);
+            }
+            75% {
+              box-shadow:
+                -12px 4px 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.5),
+                8px 0 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.2);
+            }
+            100% {
+              box-shadow:
+                -10px -6px 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.0),
+                12px 4px 0 -4px rgba(var(--rgb-{{ config.icon_color }}), 0.0);
+            }
+          }
+        .: |
+          mushroom-shape-icon {
+            --icon-size: 65px;
+            display: flex;
+            margin: -18px 0 10px -20px !important;
+            padding-right: 10px;
+          }
+          ha-card {
+            clip-path: inset(0 0 0 0 round var(--ha-card-border-radius, 12px));
+          }
