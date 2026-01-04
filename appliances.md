@@ -53,7 +53,7 @@ card_mod:
         {% set max_time = 120 %}
         {% set ent_power     = 'sensor.smart_plug_power' %} 
         
-        /* OPTIONAL Pregress Percentage Sensor (if exists) */
+        /* OPTIONAL Progress Percentage Sensor (if exists) */
         {% set ent_percent   = 'sensor.dishwasher_progress_percantage' %}
 
         /* 2. SIZES (Px) */
@@ -278,7 +278,7 @@ card_mod:
         {% set max_time = 120 %}
         {% set ent_power   = 'sensor.smart_plug_power' %}
 
-        /* OPTIONAL Pregress Percentage Sensor (if exists) */
+        /* OPTIONAL Progress Percentage Sensor (if exists) */
         {% set ent_percent   = 'sensor.washing_machine_progress_percantage' %}
 
         /* 2. SIZES (Px) */
