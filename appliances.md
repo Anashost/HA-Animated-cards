@@ -54,7 +54,7 @@ card_mod:
         {% set ent_power     = 'sensor.smart_plug_power' %} 
         
         /* OPTIONAL Progress Percentage Sensor (if exists) */
-        {% set ent_percent   = 'sensor.dishwasher_progress_percantage' %}
+        {% set ent_percent   = 'sensor.dishwasher_progress_percentage' %}
 
         /* 2. SIZES (Px) */
         --config-icon-size:       65px;
@@ -89,7 +89,7 @@ card_mod:
               /* Use the sensor provided percentage */
               {% set progress = raw_percent | int %}
            {% else %}
-              /* Fallback: Calculate based on fixed 180min (Adjust as needed) */
+              /* Fallback: Calculate based on max_time */
               {% set max_cycle_time = max_time %}
               {% set calc_prog = ((max_cycle_time - time_rem) / max_cycle_time * 100) | int %}
               {% set progress = [5, [calc_prog, 100] | min] | max %}
@@ -279,7 +279,7 @@ card_mod:
         {% set ent_power   = 'sensor.smart_plug_power' %}
 
         /* OPTIONAL Progress Percentage Sensor (if exists) */
-        {% set ent_percent   = 'sensor.washing_machine_progress_percantage' %}
+        {% set ent_percent   = 'sensor.washing_machine_progress_percentage' %}
 
         /* 2. SIZES (Px) */
         --config-icon-size:       65px;
@@ -315,7 +315,7 @@ card_mod:
               /* Use the sensor provided percentage */
               {% set progress = raw_percent | int %}
            {% else %}
-              /* Fallback: Calculate based on fixed avg cycle (90m) */
+              /* Fallback: Calculate based on max_time */
               {% set max_cycle_time = max_time %}
               {% set calc_prog = ((max_cycle_time - time_rem) / max_cycle_time * 100) | int %}
               {% set progress = [5, [calc_prog, 100] | min] | max %}
