@@ -272,7 +272,7 @@ card_mod:
         /* USER CONFIGURATION       */
         /* ======================== */
         
-        /* 1. ENTITIES (Update these!) */
+        /* 1. ENTITIES */
         {% set ent_status  = 'sensor.washing_machine_progress' %}
         {% set ent_timerem = 'sensor.washing_machine_time_remaining' %}
         {% set max_time = 120 %}
@@ -343,7 +343,7 @@ card_mod:
           {% set color = '0, 255, 255' %}   /* cyan */
           {% set anim_type = 'none' %}
           {% set icon_shake = 'washer-spin-smooth 0.8s linear infinite' %}
-          {% set wave_anim = 'wave 2s linear infinite' %}          /* Fast Wave */
+          {% set wave_anim = 'wave 2s linear infinite' %}  /* Fast Wave */
           {% set overlay_img = 'radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 60%)' %}
 
         {% elif is_done %}
@@ -523,7 +523,8 @@ card_mod:
         /* ======================== */
         /* USER CONFIGURATION       */
         /* ======================== */
-        
+
+        /* 1. ENTITIES */
         {% set ent_switch = 'switch.smart_plug' %} 
         {% set ent_power = 'sensor.smart_plug_power' %}
         
@@ -538,7 +539,7 @@ card_mod:
         {% set thresh_heat = 1000 %}
         {% set thresh_active = 5 %}
 
-        /* Sizes */
+        /* 2. Sizes */
         --config-icon-size:      65px;
         --config-font-primary:   15px;
         --config-font-secondary: 12px;
@@ -788,7 +789,8 @@ card_mod:
         /* ======================== */
         /* USER CONFIGURATION       */
         /* ======================== */
-        
+
+        /* 1. ENTITIES */
         {% set ent_switch = 'switch.smart_plug' %} 
         {% set ent_power = 'sensor.smart_plug_power' %}
         
@@ -803,7 +805,7 @@ card_mod:
         {% set thresh_spin = 300 %}
         {% set thresh_active = 5 %}
 
-        /* Sizes */
+        /* 2. Sizes */
         --config-icon-size:       65px;
         --config-font-primary:    15px;
         --config-font-secondary:  12px;
