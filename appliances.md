@@ -1274,7 +1274,7 @@ card_mod:
         unique_id: dishwasher_active_delay
         # Change the entity_id below to match your actual smart plug
         state: >
-          {{ states('sensor.smart_plug')|float(0) > 5 }}
+          {{ states('sensor.smart_plug_power')|float(0) > 5 }}
         delay_off: "00:05:00"
         device_class: running
         icon: mdi:dishwasher
@@ -1553,7 +1553,7 @@ card_mod:
         unique_id: washing_machine_active_delay
         # Change the entity_id below to match your actual smart plug
         state: >
-          {{ states('sensor.smart_plug')|float(0) > 5 }}
+          {{ states('sensor.smart_plug_power')|float(0) > 5 }}
         delay_off: "00:05:00"
         device_class: running
         icon: mdi:washing-machine
@@ -1833,7 +1833,7 @@ card_mod:
         unique_id: dryer_active_status
         # Change the entity_id below to match your actual smart plug
         state: >
-          {{ states('sensor.smart_plug')|float(0) > 5 }}
+          {{ states('sensor.smart_plug_power')|float(0) > 5 }}
         delay_off: "00:05:00"
         device_class: running
         icon: mdi:tumble-dryer
@@ -2160,7 +2160,7 @@ card_mod:
         device_class: running
         icon: mdi:washing-machine
         state: >
-          {{ states('sensor.plug_6_local_power')|float(0) > 5 }}
+          {{ states('sensor.smart_plug_power')|float(0) > 5 }}
         delay_off: "00:05:00" # Wait 5 min before saying it's off
 
       # 2. "Drying Mode" Detector
@@ -2169,7 +2169,7 @@ card_mod:
       - name: "Combo Machine Drying Detector"
         unique_id: combo_machine_drying_detector
         state: >
-          {{ states('sensor.plug_6_local_power')|float(0) > 800 }}
+          {{ states('sensor.smart_plug_power')|float(0) > 800 }}
         # MUST be high for 15 mins to count as drying
         delay_on: "00:15:00"
         # Keeps drying active during cool down
