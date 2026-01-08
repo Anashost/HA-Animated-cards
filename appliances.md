@@ -15,7 +15,15 @@
 ```
 -->
 
-# Home Assistant Animated Dishwasher / Washing Machine Cards
+# Home Assistant Animated Appliances Cards
+
+>* Dishwasher
+>
+>* Washing Machine
+>
+>* Dryer ![](https://img.shields.io/badge/-New-yellow)
+>
+>* Combo Washer & Dryer ![](https://img.shields.io/badge/-New-yellow)
 
 This [YouTube Video](https://youtu.be/6NM60DEdScA) explains how to do it.
 
