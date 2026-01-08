@@ -16,7 +16,7 @@
 -->
 
 <div align="left">
-<a href="./">
+<a href="https://github.com/Anashost/HA-Animated-cards">
   <img src="https://img.shields.io/badge/◀_BACK_TO_HOME_Page-2196F3?style=for-the-badge&logoColor=white" height="60" />
 </a>
 </div>
