@@ -21,7 +21,7 @@
 
 | 📂 Category | 📝 Description | 🔗 Link |
 | :--- | :--- | :---: |
-| **🏠Home** | main collection| [**You are here**](./README.md) |
+| **🏠Home** | main collection| [**You are here**](./) |
 | **🧺 Appliances** | washer, dryer, dishwasher, etc | [**View Page**](./appliances.md) |
 | **🔋 Battery** | Battery level, charging animations | [**View Page**](./battery.md) |
 | **📈 Graph Cards** | Temp, humidity, etc | [**View Page**](./env_with_graph.md) |
