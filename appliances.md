@@ -1834,7 +1834,7 @@ card_mod:
 ```yaml
   - binary_sensor:
       - name: "Dryer Active delay"
-        unique_id: dryer_active_status
+        unique_id: dryer_active_delay
         # Change the entity_id below to match your actual smart plug
         state: >
           {{ states('sensor.smart_plug_power')|float(0) > 5 }}
