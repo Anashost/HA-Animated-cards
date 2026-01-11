@@ -35,7 +35,7 @@ explains how to do it.
 <hr>
 
 > [!NOTE]
-> If you are using the **Sections** view type, you may need to set `rows` to around `1.5` to the card,
+> If you are using the **Sections** view type, you may need to set `rows` to around `1.5` for the card,
 > otherwise the card may appear compressed.
 >
 > ```yaml
