@@ -34,6 +34,17 @@ explains how to do it.
 
 <hr>
 
+> [!NOTE]
+> If you are using the **Sections** view type, you may need to set `rows` to around `1.5` to the card,
+> otherwise the card may appear compressed.
+>
+> ```yaml
+> grid_options:
+>   rows: 1.5
+> ```
+
+<hr>
+
 ## Batch 1:
 ![ezgif-8e9c11636a22c613](https://github.com/user-attachments/assets/4f5a1af0-d89b-4ed9-9c8c-36e678045580)
 `Loading images... please wait`
