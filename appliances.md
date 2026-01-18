@@ -321,7 +321,7 @@ card_mod:
         /* ======================== */
         
         /* 1. ENTITIES */
-        {% set ent_status  = 'sensor.washing_machine_progress' %}
+        {% set ent_progress  = 'sensor.washing_machine_progress' %}
         {% set ent_timerem = 'sensor.washing_machine_time_remaining' %}
         {% set max_time = 120 %}
         {% set ent_power   = 'sensor.smart_plug_power' %}
@@ -337,7 +337,7 @@ card_mod:
         /* ======================== */
 
         /* --- SENSORS & TIME --- */
-        {% set status = states(ent_status) %}
+        {% set status = states(ent_progress) %}
         {% set status_clean = status | replace('-', ' ') | title %}
 
         /* Time Detection (mins vs timestamp) */
@@ -844,7 +844,7 @@ card_mod:
         /* ======================== */
         
         /* 1. ENTITIES */
-        {% set ent_status  = 'sensor.combo_machine_progress' %}
+        {% set ent_progress  = 'sensor.combo_machine_progress' %}
         {% set ent_timerem = 'sensor.combo_machine_time_remaining' %}
         {% set max_time = 180 %}
 
@@ -861,7 +861,7 @@ card_mod:
         /* ======================== */
 
         /* --- SENSORS & DATA --- */
-        {% set status = states(ent_status) %}
+        {% set status = states(ent_progress) %}
         {% set status_clean = status | replace('-', ' ') | title %}
 
         /* Time Detection (mins vs timestamp) */
