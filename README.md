@@ -37,6 +37,7 @@ explains how to do it.
 > [!NOTE]
 > If you are using the **Sections** view type, you may need to set `rows` to around `1.5` for the card,
 > otherwise the card may appear compressed.
+> (USE THIS ONLY IF YOU HAVE ISSUES).
 >
 > ```yaml
 > grid_options:
