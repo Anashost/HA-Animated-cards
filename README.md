@@ -70,6 +70,8 @@ background: #1C1C1C !important;
 
 # Cards:
 
+## $${\color{yellow}Batch \space 1}$$
+
 <details>
   <summary><strong>1 - smartplug</summary>
 
@@ -3995,6 +3997,8 @@ card_mod:
 
 ```
 </details>
+
+## $${\color{yellow}Batch \space 2}$$
 
 <details>
 <summary><strong>31 - Console</strong></summary>
@@ -9304,6 +9308,8 @@ card_mod:
 ```
 </details>
 
+## $${\color{yellow}Batch \space 3}$$
+
 <details>
 <summary><strong>56 - Pollen grass (kleenex)</strong></summary>
 
@@ -10839,6 +10845,8 @@ card_mod:
 
 ```
 </details>
+
+## $${\color{yellow}Batch \space 4}$$
 
 <details>
 <summary><strong>64 - Water Boiler (C)</strong></summary>
