@@ -94,7 +94,7 @@ card_mod:
 	        {% set use_number      = false %}
 	
 	        {# STATE MODE SETTINGS #}
-	        {% set state_entity    = 'switch.plug_6_local' %}
+	        {% set state_entity    = config.entity %}
 	        {% set active_value    = 'on' %}
 	
 	        {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -183,7 +183,7 @@ card_mod:
 	        {% set use_number      = false %}
 	
 	        {# STATE MODE SETTINGS #}
-	        {% set state_entity    = 'switch.plug_6_local' %}
+	        {% set state_entity    = config.entity %}
 	        {% set active_value    = 'on' %}
 	
 	        {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -340,7 +340,7 @@ card_mod:
 	        {% set use_number      = false %}
 	
 	        {# STATE MODE SETTINGS #}
-	        {% set state_entity    = 'switch.plug_6_local' %}
+	        {% set state_entity    = config.entity %}
 	        {% set active_value    = 'on' %}
 	
 	        {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -461,7 +461,7 @@ card_mod:
 	        {% set use_number      = false %}
 	
 	        {# STATE MODE SETTINGS #}
-	        {% set state_entity    = 'switch.plug_6_local' %}
+	        {% set state_entity    = config.entity %}
 	        {% set active_value    = 'on' %}
 	
 	        {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -805,7 +805,7 @@ card_mod:
 	        {% set use_number      = false %}
 	
 	        {# STATE MODE SETTINGS #}
-	        {% set state_entity    = 'switch.plug_6_local' %}
+	        {% set state_entity    = config.entity %}
 	        {% set active_value    = 'on' %}
 	
 	        {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -959,7 +959,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -1118,7 +1118,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -1235,7 +1235,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -1400,7 +1400,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -1729,7 +1729,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -1847,7 +1847,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -1939,7 +1939,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -2047,7 +2047,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -2168,7 +2168,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -2327,7 +2327,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -2426,7 +2426,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -2522,7 +2522,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -2639,7 +2639,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -2740,7 +2740,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -2870,7 +2870,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -2956,7 +2956,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -3352,7 +3352,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -3568,7 +3568,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -4022,7 +4022,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS (for "intensity") #}
@@ -4226,7 +4226,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -4381,7 +4381,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -4549,7 +4549,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -4700,7 +4700,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -4841,7 +4841,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -5003,7 +5003,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -5152,7 +5152,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -5315,7 +5315,7 @@ card_mod:
         /* ================= USER CONFIGURATION ================= */
         
         {% set use_number      = false %}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
         {% set number_entity   = 'sensor.plug_power' %}
 
@@ -5475,7 +5475,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -5621,7 +5621,7 @@ card_mod:
         {% set use_number      = false %}
 
         {# STATE MODE SETTINGS #}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
 
         {# OPTIONAL: NUMBER MODE SETTINGS #}
@@ -5787,7 +5787,7 @@ card_mod:
       .shape {
         {# ========== USER CONFIG ========== #}
         {% set use_number      = false %}
-        {% set state_entity    = 'switch.plug_6_local' %}
+        {% set state_entity    = config.entity %}
         {% set active_value    = 'on' %}
         {% set number_entity   = 'sensor.plug_power' %}
         {# '>' '<' '=' '>=' '<=' #}
