@@ -57,6 +57,8 @@ cards:
       action: more-info
     icon: mdi:thermometer
     name: Temperature
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:
@@ -408,6 +410,8 @@ cards:
       action: more-info
     icon: mdi:water-percent
     name: Humidity
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:
@@ -697,6 +701,8 @@ cards:
       action: more-info
     icon: mdi:air-filter
     name: Air quality (US)
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:
@@ -1149,6 +1155,8 @@ cards:
       action: more-info
     icon: mdi:thermometer
     name: Living room temp (F)
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:
@@ -1497,6 +1505,8 @@ cards:
       action: more-info
     icon: mdi:air-filter
     name: Living room VOC
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:
@@ -1842,6 +1852,8 @@ cards:
       action: more-info
     icon: mdi:air-filter
     name: Air quality Home
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:
@@ -2306,6 +2318,8 @@ cards:
       action: more-info
     icon: mdi:air-filter
     name: Air quality Amsterdam
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:
@@ -2769,6 +2783,8 @@ cards:
       action: more-info
     icon: mdi:brightness-5
     name: Living room light (lux)
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:
@@ -3120,6 +3136,8 @@ cards:
       action: more-info
     icon: mdi:molecule-co2
     name: Living room CO2 (ppm)
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:
@@ -3472,6 +3490,8 @@ cards:
       action: more-info
     icon: mdi:gauge
     name: Living room pressure (mbar)
+    grid_options:
+      rows: 1.4
     primary_info: state
     secondary_info: name
     card_mod:

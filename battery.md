@@ -62,6 +62,8 @@ icon_color: white
 primary_info: name
 secondary_info: none
 name: AnasBox Phone
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     .: |
@@ -230,6 +232,8 @@ icon_color: white
 primary_info: name
 secondary_info: none
 name: AnasBox Phone
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     .: |
@@ -395,6 +399,8 @@ entity: sensor.anasbox_battery_level
 tap_action:
   action: more-info
 name: AnasBox Phone
+grid_options:
+  rows: 1.4
 icon_color: white
 primary_info: state
 secondary_info: name
@@ -525,6 +531,8 @@ entity: sensor.anasbox_battery_level
 tap_action:
   action: more-info
 name: AnasBox Phone
+grid_options:
+  rows: 1.4
 icon_color: white
 primary_info: state
 secondary_info: none
@@ -656,6 +664,8 @@ entity: sensor.anasbox_battery_level
 tap_action:
   action: more-info
 name: AnasBox Phone
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 icon_color: white
@@ -841,6 +851,8 @@ entity: sensor.anasbox_battery_level
 tap_action:
   action: more-info
 name: AnasBox Phone
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: none
 icon_color: white

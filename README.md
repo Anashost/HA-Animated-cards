@@ -85,6 +85,8 @@ tap_action:
 icon: mdi:power-plug
 icon_color: green
 name: Smart Plug
+grid_options:
+  rows: 1.4
 card_mod:
 	  style:
 	    mushroom-shape-icon$: |
@@ -174,6 +176,8 @@ tap_action:
 icon: mdi:power-socket-au
 icon_color: green
 name: Charger
+grid_options:
+  rows: 1.4
 card_mod:
 	  style:
 	    mushroom-shape-icon$: |
@@ -331,6 +335,8 @@ tap_action:
 icon: mdi:fan
 icon_color: blue
 name: Fan
+grid_options:
+  rows: 1.4
 card_mod:
 	  style:
 	    mushroom-shape-icon$: |
@@ -452,6 +458,8 @@ tap_action:
 icon: mdi:fan
 icon_color: cyan
 name: Fan
+grid_options:
+  rows: 1.4
 card_mod:
 	  style:
 	    mushroom-shape-icon$: |
@@ -796,6 +804,8 @@ tap_action:
 icon: mdi:lock
 icon_color: red
 name: Lock
+grid_options:
+  rows: 1.4
 card_mod:
 	  style:
 	    mushroom-shape-icon$: |
@@ -950,6 +960,8 @@ tap_action:
 icon: mdi:projector
 icon_color: accent
 name: Projector
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -1109,6 +1121,8 @@ tap_action:
 icon: mdi:bell
 icon_color: red
 name: Doorbell
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -1226,6 +1240,8 @@ tap_action:
 icon: mdi:sprinkler-variant
 icon_color: blue
 name: Sprinkler
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -1391,6 +1407,8 @@ tap_action:
 icon: mdi:sprinkler-variant
 icon_color: blue
 name: Sprinkler
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -1563,6 +1581,8 @@ hvac_modes:
   - fan_only
   - "off"
 name: Heater
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -1720,6 +1740,8 @@ tap_action:
 icon: mdi:led-strip-variant
 icon_color: blue
 name: LED Strip
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -1838,6 +1860,8 @@ tap_action:
 icon: mdi:washing-machine
 icon_color: blue
 name: Washing Machine
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -1930,6 +1954,8 @@ tap_action:
 icon: mdi:washing-machine
 icon_color: blue
 name: Washing Machine
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -2038,6 +2064,8 @@ tap_action:
 icon: mdi:dishwasher
 icon_color: blue
 name: Dishwasher
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -2159,6 +2187,8 @@ tap_action:
 icon: mdi:fire
 icon_color: deep-orange
 name: Fireplace
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -2318,6 +2348,8 @@ tap_action:
 icon: mdi:robot-vacuum
 icon_color: blue
 name: Vacuum
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -2417,6 +2449,8 @@ tap_action:
 icon: mdi:printer-3d-nozzle
 icon_color: purple
 name: 3d Printer
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -2513,6 +2547,8 @@ tap_action:
 icon: mdi:motion-sensor
 icon_color: red
 name: PIR Sensor
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -2630,6 +2666,8 @@ tap_action:
 icon: mdi:alarm
 icon_color: pink
 name: Alarm
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -2731,6 +2769,8 @@ entity: switch.plug_6_local
 icon: mdi:radiator
 icon_color: amber
 name: Heater
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -2861,6 +2901,8 @@ tap_action:
 icon: mdi:led-on
 icon_color: blue
 name: RGB
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -2947,6 +2989,8 @@ tap_action:
 icon: mdi:kettle-steam
 icon_color: brown
 name: Kettle
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -3343,6 +3387,8 @@ tap_action:
 icon: mdi:router-wireless
 icon_color: blue
 name: Router
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -3559,6 +3605,8 @@ tap_action:
 icon: mdi:motion-sensor
 icon_color: red
 name: PIR Sensor
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -3711,6 +3759,8 @@ show_brightness_control: true
 collapsible_controls: false
 show_color_control: true
 name: Lamp
+grid_options:
+  rows: 1.4
 icon_color: auto
 card_mod:
   style:
@@ -3913,6 +3963,8 @@ show_brightness_control: true
 collapsible_controls: false
 show_color_control: true
 name: Lamp
+grid_options:
+  rows: 1.4
 icon_color: auto
 card_mod:
   style:
@@ -4013,6 +4065,8 @@ tap_action:
 icon: mdi:controller
 icon_color: purple
 name: Console
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -4217,6 +4271,8 @@ tap_action:
 icon: mdi:desktop-tower
 icon_color: white
 name: Gaming Rig
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -4372,6 +4428,8 @@ tap_action:
 icon: mdi:desktop-tower
 icon_color: white
 name: PC
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -4540,6 +4598,8 @@ tap_action:
 icon: mdi:server-network
 icon_color: blue
 name: Home Server
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -4691,6 +4751,8 @@ tap_action:
 icon: mdi:nintendo-switch
 icon_color: white
 name: Nintendo Switch
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -4832,6 +4894,8 @@ tap_action:
 icon: mdi:printer
 icon_color: amber
 name: Printer
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -4994,6 +5058,8 @@ tap_action:
 icon: mdi:air-purifier
 icon_color: light-blue
 name: Air Purifier
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -5143,6 +5209,8 @@ tap_action:
 icon: mdi:clock-digital
 icon_color: cyan
 name: Awtrix Clock
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -5308,6 +5376,8 @@ tap_action:
 icon: mdi:fridge-industrial
 icon_color: white
 name: Freezer / Refrigerator
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     .: |
@@ -5466,6 +5536,8 @@ tap_action:
 icon: mdi:vibrate
 icon_color: red
 name: Vibration
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -5612,6 +5684,8 @@ tap_action:
 icon: mdi:pump
 icon_color: blue
 name: Water Pump
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -5781,6 +5855,8 @@ tap_action:
 icon: mdi:washing-machine
 icon_color: blue
 name: Washing Machine
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     mushroom-shape-icon$: |
@@ -5941,6 +6017,8 @@ tap_action:
 icon: mdi:printer-3d-nozzle
 icon_color: purple
 name: 3D Printer
+grid_options:
+  rows: 1.4
 hold_action:
   action: none
 double_tap_action:
@@ -6087,6 +6165,8 @@ tap_action:
   action: more-info
 icon: mdi:door
 name: Contact (Door)
+grid_options:
+  rows: 1.4
 icon_color: red
 primary_info: state
 secondary_info: name
@@ -6393,6 +6473,8 @@ tap_action:
   action: more-info
 icon: mdi:thermometer
 name: Living room temp (C)
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -6693,6 +6775,8 @@ tap_action:
   action: more-info
 icon: mdi:thermometer
 name: Living room temp (F)
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -6989,6 +7073,8 @@ tap_action:
   action: more-info
 icon: mdi:water-percent
 name: Living room humidity
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -7232,6 +7318,8 @@ tap_action:
   action: more-info
 icon: mdi:air-filter
 name: Air quality Home
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -7642,6 +7730,8 @@ tap_action:
   action: more-info
 icon: mdi:air-filter
 name: Air quality Amsterdam
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -8051,6 +8141,8 @@ tap_action:
   action: more-info
 icon: mdi:air-filter
 name: Air quality (US)
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -8458,6 +8550,8 @@ tap_action:
   action: more-info
 icon: mdi:brightness-5
 name: Living room light (lux)
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -8848,6 +8942,8 @@ hold_action:
 double_tap_action:
   action: none
 name: Smart Plug
+grid_options:
+  rows: 1.4
 card_mod:
   style:
     .: |
@@ -9321,6 +9417,8 @@ entity: sensor.kleenex_pollen_radar_home_grass_level
 tap_action:
   action: more-info
 name: Grass
+grid_options:
+  rows: 1.4
 icon: mdi:grass
 primary_info: state
 secondary_info: name
@@ -9455,6 +9553,8 @@ entity: sensor.kleenex_pollen_radar_home_trees_level
 tap_action:
   action: more-info
 name: Trees
+grid_options:
+  rows: 1.4
 icon: mdi:forest
 primary_info: state
 secondary_info: name
@@ -9589,6 +9689,8 @@ entity: sensor.kleenex_pollen_radar_home_weeds_level
 tap_action:
   action: more-info
 name: Weeds
+grid_options:
+  rows: 1.4
 icon: mdi:cannabis
 primary_info: state
 secondary_info: name
@@ -9723,6 +9825,8 @@ entity: binary_sensor.flood_kitchen_water_leak
 tap_action:
   action: more-info
 name: Leak sensor
+grid_options:
+  rows: 1.4
 icon: mdi:pipe-leak
 primary_info: name
 secondary_info: none
@@ -9864,6 +9968,8 @@ entity: binary_sensor.flood_kitchen_water_leak
 tap_action:
   action: more-info
 name: Leak sensor
+grid_options:
+  rows: 1.4
 icon: mdi:pipe-leak
 icon_color: white
 primary_info: name
@@ -10012,6 +10118,8 @@ tap_action:
   action: more-info
 icon: mdi:molecule-co2
 name: Living room CO2 (ppm)
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -10312,6 +10420,8 @@ tap_action:
   action: more-info
 icon: mdi:air-filter
 name: Living room VOC
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -10605,6 +10715,8 @@ tap_action:
   action: more-info
 icon: mdi:gauge
 name: Living room pressure (mbar)
+grid_options:
+  rows: 1.4
 primary_info: state
 secondary_info: name
 card_mod:
@@ -10857,6 +10969,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: sensor.water_boiler
 name: Water Boiler
+grid_options:
+  rows: 1.4
 icon: mdi:water-boiler
 primary_info: state
 secondary_info: name
@@ -10980,6 +11094,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: sensor.water_boiler
 name: Water Boiler (F)
+grid_options:
+  rows: 1.4
 icon: mdi:water-boiler
 primary_info: state
 secondary_info: name
@@ -11082,6 +11198,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: sensor.water_tank_level
 name: Water Tank
+grid_options:
+  rows: 1.4
 tap_action:
   action: more-info
 primary_info: state
@@ -11227,6 +11345,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: sensor.fuel_tank_level
 name: Fuel Tank
+grid_options:
+  rows: 1.4
 tap_action:
   action: more-info
 primary_info: state
