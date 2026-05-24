@@ -66,6 +66,8 @@ This [YouTube Video](https://youtu.be/6NM60DEdScA) explains how to do it.
 type: custom:mushroom-entity-card
 entity: sensor.dishwasher_status
 name: Smart Dishwasher
+grid_options:
+  rows: 1.4
 icon: mdi:dishwasher
 primary_info: name
 secondary_info: state
@@ -331,6 +333,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: sensor.washing_machine_status
 name: Smart Washing Machine
+grid_options:
+  rows: 1.4
 icon: mdi:washing-machine
 primary_info: name
 secondary_info: state
@@ -621,6 +625,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: sensor.dryer_status
 name: Smart Dryer
+grid_options:
+  rows: 1.4
 icon: mdi:tumble-dryer
 primary_info: name
 secondary_info: state
@@ -892,6 +898,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: sensor.combo_machine_status
 name: Smart Combo
+grid_options:
+  rows: 1.4
 icon: mdi:washing-machine
 primary_info: name
 secondary_info: state
@@ -1208,6 +1216,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: sensor.smart_plug_power
 name: Dishwasher
+grid_options:
+  rows: 1.4
 icon: mdi:dishwasher
 primary_info: name
 secondary_info: state
@@ -1474,6 +1484,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: sensor.smart_plug_power
 name: Washing Machine
+grid_options:
+  rows: 1.4
 icon: mdi:washing-machine
 primary_info: name
 secondary_info: state
@@ -1753,6 +1765,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: binary_sensor.dryer_active_delay
 name: Dumb Dryer
+grid_options:
+  rows: 1.4
 icon: mdi:tumble-dryer
 primary_info: name
 secondary_info: state
@@ -2033,6 +2047,8 @@ card_mod:
 type: custom:mushroom-entity-card
 entity: binary_sensor.combo_machine_active_delay
 name: Dumb Combo
+grid_options:
+  rows: 1.4
 icon: mdi:washing-machine
 primary_info: name
 secondary_info: state
