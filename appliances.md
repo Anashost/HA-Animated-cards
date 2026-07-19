@@ -176,9 +176,9 @@ card_mod:
 
         /* --- STATE DEFINITIONS --- */
         {% set s_lower = status | lower %}
-        {% set is_running = s_lower in ['wash', 'washing', 'rinse', 'rinsing', 'pre-wash'] %}
+        {% set is_running = s_lower in ['wash', 'washing', 'rinse', 'rinsing', 'pre-wash', 'soak', 'ai_wash', 'ai_rinse', 'weight_sensing', 'air_wash', 'delay_wash', 'freeze_protection'] %}
         {% set is_drying  = s_lower in ['dry', 'drying'] %}
-        {% set is_done    = s_lower in ['finished', 'complete', 'end'] %}
+        {% set is_done    = s_lower in ['finish','finished', 'complete', 'end', 'none'] %}
 
         /* --- ASSIGN ANIMATIONS --- */
         {% if is_drying %}
@@ -420,7 +420,7 @@ card_mod:
 
         /* --- PROGRESS CALCULATION --- */
         
-        {% if status | lower in ['idle', 'off', 'standby', 'unknown', 'unavailable'] %}
+        {% if status | lower in ['idle', 'off', 'standby', 'unknown', 'unavailable', 'none'] %}
            {% set progress = 0 %}
            {% set badge_text = status_clean ~ power_text %}
         {% else %}
@@ -441,10 +441,10 @@ card_mod:
 
         /* --- STATE DEFINITIONS --- */
         {% set s_lower = status | lower %}
-        {% set is_running  = s_lower in ['wash', 'washing', 'rinse', 'rinsing', 'pre-wash', 'soak'] %}
+        {% set is_running  = s_lower in ['wash', 'washing', 'rinse', 'rinsing', 'pre-wash', 'soak', 'ai_wash', 'ai_rinse', 'weight_sensing', 'air_wash', 'delay_wash', 'freeze_protection'] %}
         {% set is_spinning = s_lower in ['spin', 'spinning'] %}
-        {% set is_drying   = s_lower in ['dry', 'drying'] %}
-        {% set is_done     = s_lower in ['finished', 'complete', 'end'] %}
+        {% set is_drying   = s_lower in ['dry', 'drying', 'cooling', 'wrinkle_prevent'] %}
+        {% set is_done     = s_lower in ['finish','finished', 'complete', 'end', 'none'] %}
 
         /* --- ASSIGN ANIMATIONS --- */
         {% if is_drying %}
