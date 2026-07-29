@@ -1762,7 +1762,8 @@ extra_styles: |
 # Cards (Dumb)
 
 <details>
-<summary><strong>1 - Dumb Dishwasher (smart plug)</summary>
+<summary><strong>1 - 
+ Dishwasher (smart plug)</summary>
 
 ```yaml
 type: custom:button-card
@@ -3459,6 +3460,258 @@ extra_styles: |
     `;
   ]]]
 
+```
+</details>
+
+---
+<details>
+<summary><strong>6 - Dumb Appliance (Generic / Timer)</summary>
+
+```yaml
+type: custom:button-card
+entity: timer.dishwasher_time_remaining
+name: Dumb Dishwasher
+show_state: false
+show_label: true
+variables:
+  timer_remaining: timer.dishwasher_time_remaining
+  size_icon: 45px
+  size_shape: 65px
+  size_card_height: 95px
+  font_primary: 15px
+  font_secondary: 13px
+  font_badge: 11px
+styles:
+  card:
+    - "--config-icon-size": "[[[ return variables.size_icon ]]]"
+    - "--config-shape-size": "[[[ return variables.size_shape ]]]"
+    - "--config-card-height": "[[[ return variables.size_card_height ]]]"
+    - "--config-font-primary": "[[[ return variables.font_primary ]]]"
+    - "--config-font-secondary": "[[[ return variables.font_secondary ]]]"
+    - "--config-font-badge": "[[[ return variables.font_badge ]]]"
+    - height: var(--config-card-height) !important
+    - padding: 0px !important
+    - overflow: hidden
+    - position: relative
+    - transition: all 0.5s ease
+  grid:
+    - padding: 12px 16px
+    - height: 100%
+    - box-sizing: border-box
+    - grid-template-areas: '"i n" "i l"'
+    - grid-template-columns: var(--config-shape-size) 1fr
+    - grid-template-rows: auto auto
+    - align-content: center
+    - gap: 0px 12px
+    - position: relative
+  icon:
+    - width: var(--config-icon-size)
+    - height: var(--config-icon-size)
+    - color: white
+    - z-index: 1
+    - animation: var(--appliance-anim-shake) !important
+    - transform-origin: 50% 50%
+  img_cell:
+    - width: var(--config-shape-size)
+    - height: var(--config-shape-size)
+    - border-radius: 50%
+    - border: 1px solid rgba(255, 255, 255, 0.1) !important
+    - background: rgba(255, 255, 255, 0.05) !important
+    - position: relative
+    - overflow: hidden !important
+    - justify-self: start
+  name:
+    - justify-self: start
+    - font-size: var(--config-font-primary)
+    - font-weight: 500
+    - align-self: end
+    - margin-bottom: 2px
+    - position: relative
+  label:
+    - justify-self: start
+    - font-size: var(--config-font-secondary)
+    - opacity: 0.7
+    - align-self: start
+    - margin-top: 2px
+    - position: relative
+  custom_fields:
+    badge1:
+      - position: absolute
+      - top: 10px
+      - right: 10px
+      - background: rgba(var(--appliance-color), 0.15)
+      - color: rgb(var(--appliance-color))
+      - border: 1px solid rgba(var(--appliance-color), 0.3)
+      - padding: 2px 10px
+      - border-radius: 12px
+      - font-size: var(--config-font-badge)
+      - font-weight: 600
+      - text-transform: uppercase
+      - letter-spacing: 0.5px
+      - white-space: nowrap
+      - z-index: 1
+    badge2:
+      - position: absolute
+      - top: 38px
+      - right: 10px
+      - padding: 4px 8px
+      - font-size: 10px
+      - letter-spacing: 0.5px
+      - white-space: nowrap
+      - opacity: 0.9
+      - text-transform: uppercase
+      - font-weight: 500
+      - z-index: 1
+    bar:
+      - position: absolute
+      - bottom: 0
+      - left: 0
+      - height: 3.5px
+      - width: var(--appliance-level)
+      - background: rgb(var(--appliance-color))
+      - box-shadow: 0 0 10px rgb(var(--appliance-color))
+      - transition: width 0.5s ease
+tap_action:
+  action: more-info
+label: |
+  [[[
+    let ent = variables.timer_remaining;
+    let state = states[ent] ? states[ent].state : 'unknown';
+    if (state === 'active') return 'Running';
+    return 'Not Running';
+  ]]]
+icon: mdi:dishwasher
+custom_fields:
+  badge1: " "
+  badge2: " "
+  bar: " "
+extra_styles: |
+  [[[
+    let ent_timer = variables.timer_remaining;
+    let timer_obj = states[ent_timer];
+    let is_active = timer_obj && timer_obj.state === 'active';
+
+    let time_str = '';
+    let progress_pct = 0;
+
+    // Helper function to parse "HH:MM:SS" into total seconds
+    function parseSeconds(timeVal) {
+        if (!timeVal) return 0;
+        if (typeof timeVal === 'number') return timeVal;
+        let parts = timeVal.toString().split(':');
+        if (parts.length === 3) {
+            return (+parts[0]) * 3600 + (+parts[1]) * 60 + (+parts[2]);
+        }
+        return 0;
+    }
+
+    if (is_active) {
+        let remaining_sec = 0;
+        let total_duration_sec = 0;
+
+        // Calculate total duration in seconds
+        if (timer_obj.attributes && timer_obj.attributes.duration) {
+            total_duration_sec = parseSeconds(timer_obj.attributes.duration);
+        }
+
+        // Calculate remaining seconds
+        if (timer_obj.attributes && timer_obj.attributes.finishes_at) {
+            let finish = new Date(timer_obj.attributes.finishes_at);
+            let now = new Date();
+            remaining_sec = Math.max(0, Math.floor((finish - now) / 1000));
+        } else if (timer_obj.attributes && timer_obj.attributes.remaining) {
+            remaining_sec = parseSeconds(timer_obj.attributes.remaining);
+        }
+
+        // Calculate completion percentage
+        if (total_duration_sec > 0) {
+            let elapsed_sec = Math.max(0, total_duration_sec - remaining_sec);
+            progress_pct = Math.min(100, Math.round((elapsed_sec / total_duration_sec) * 100));
+        } else {
+            progress_pct = 50; // fallback if duration missing
+        }
+
+        if (remaining_sec > 0) {
+            let hours = Math.floor(remaining_sec / 3600);
+            let mins = Math.floor((remaining_sec % 3600) / 60);
+            time_str = hours > 0 ? `${hours}h ${mins.toString().padStart(2, '0')}m left` : `${mins}m left`;
+        } else {
+            time_str = 'Running';
+        }
+    }
+
+    let status_text = 'Idle';
+    let color = '158, 158, 158';
+    let anim_type = 'none';
+    let icon_shake = 'none';
+    let wave_anim = 'none';
+    let overlay_img = 'none';
+    let badge1 = '';
+
+    if (is_active) {
+        status_text = 'Washing';
+        color = '33, 150, 243';
+        anim_type = 'bubbles 1s linear infinite';
+        overlay_img = 'radial-gradient(2px 2px at 20% 80%, white, transparent), radial-gradient(2px 2px at 50% 70%, white, transparent)';
+        icon_shake = 'shake 0.8s ease-in-out infinite';
+        wave_anim = 'wave 4s linear infinite';
+        badge1 = status_text;
+    } else {
+        status_text = 'Idle';
+        color = '158, 158, 158';
+        badge1 = status_text;
+    }
+
+    let b2_bg = `rgba(${color}, 0.15)`;
+    let b2_border = `1px solid rgba(128,128,128, 0.2)`;
+    let b2_br = `2px solid rgb(${color})`;
+
+    return `
+      #card {
+        --appliance-color: ${color};
+        --appliance-level: ${progress_pct}%;
+        --appliance-anim-overlay: ${anim_type};
+        --appliance-anim-shake: ${icon_shake};
+        --appliance-anim-wave: ${wave_anim};
+        --appliance-overlay-bg: ${overlay_img};
+      }
+      
+      #badge1::before { content: "${badge1}"; } 
+      #badge2 {
+        display: ${time_str ? 'block' : 'none'};
+        background: ${b2_bg};
+        color: var(--primary-text-color, #fff);
+        border-top: ${b2_border}; border-bottom: ${b2_border}; border-right: ${b2_br};
+        border-left: ${b2_br}; border-radius: 6px !important;
+      }
+      #badge2::before { content: "${time_str}"; }
+      #img-cell::before {
+        content: ''; position: absolute; left: -50%; width: 200%; height: 200%;
+        top: calc(100% - var(--appliance-level)); background: rgba(var(--appliance-color), 0.6) !important;
+        border-radius: 40%; animation: var(--appliance-anim-wave) !important;
+        transition: top 0.5s ease; z-index: 1;
+        display: ${wave_anim === 'none' ? 'none' : 'block'};
+      }
+      #img-cell::after {
+        content: ''; position: absolute; inset: 0; background-image: var(--appliance-overlay-bg);
+        background-size: 100% 100%; animation: var(--appliance-anim-overlay) !important; z-index: 1;
+        display: ${anim_type === 'none' ? 'none' : 'block'};
+      }
+      @keyframes wave { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes shake { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(5deg) translateY(-1px); } 75% { transform: rotate(-5deg) translateY(1px); } }
+      @keyframes bubbles { 0% { transform: translateY(10px); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-20px); opacity: 0; } }
+      @keyframes steam-rise { 0% { opacity: 0; transform: translateY(5px); } 50% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-10px); } }
+    `;
+  ]]]
+
+```
+</details>
+
+<details>
+<summary><strong>Dumb Dishwasher (Helper/Template)</summary>
+
+```
+Create a timer helper and an automation that will start the timer based on defined logic. This could be from a vibration sensor being active for a certain amount of time, a contact sensor being open for a specific duration, or a combination of trend / history stats helpers.
 ```
 </details>
 
