@@ -26,7 +26,7 @@
 
 ># $${\color{#FF0000}Attention!!}$$
 >
->Card V2 available [HERE](https://www.patreon.com/AnasBox/posts/weather-card-v2-164637169)
+>Weather Card V2 available [HERE](https://www.patreon.com/AnasBox/posts/weather-card-v2-164637169)
 >
 >Whats new:
 >- 7 Day forecast
