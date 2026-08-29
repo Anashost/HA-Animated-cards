@@ -605,8 +605,9 @@ custom_fields:
 </details>
 
 <details>
-<summary><strong>Template</summary>
+<summary><strong>Template (updated August 29th 2026)</summary>
 
+- whats new: fallback to last known history value if sensor is unavailable or when the weather integration goes unavailable temporarily.
 
 - Replace `sensor.openweathermap_temperature` with your own `weather.xx` or `sensor.xx temperature`, in both places.
 
@@ -623,14 +624,30 @@ custom_fields:
         unique_id: temptrend_24h
         state: >
           {% set target = 'sensor.openweathermap_temperature' %}
-          {{ (state_attr(target, 'temperature') if target.startswith('weather.') else states(target)) | float(0) | round(1) }}
+          {% set raw_val = state_attr(target, 'temperature') if target.startswith('weather.') else states(target) %}
+          {% if is_number(raw_val) %}
+            {{ raw_val | float | round(1) }}
+          {% else %}
+            {{ this.state | default(0, true) }}
+          {% endif %}
         attributes:
           last_update: "{{ now().timestamp() }}"
           history: >
             {% set target = 'sensor.openweathermap_temperature' %}
-            {% set current = (state_attr(target, 'temperature') if target.startswith('weather.') else states(target)) | float(0) | round(1) %}
-            {% set past = state_attr('sensor.temptrend_24h', 'history') | default([current] * 24, true) %}
-            {{ (past + [current])[-24:] }}
+            {% set raw_val = state_attr(target, 'temperature') if target.startswith('weather.') else states(target) %}
+            {% set past = state_attr('sensor.temptrend_24h', 'history') %}
+            
+            {% if is_number(raw_val) %}
+              {% set current = raw_val | float | round(1) %}
+            {% else %}
+              {% set current = past[-1] if past is not none and past | length > 0 else 0 %}
+            {% endif %}
+            
+            {% if past is none or past | length == 0 %}
+              {{ [current] * 24 }}
+            {% else %}
+              {{ (past + [current])[-24:] }}
+            {% endif %}
 ```
 </details>
 
