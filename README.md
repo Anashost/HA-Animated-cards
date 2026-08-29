@@ -39,6 +39,8 @@
 | **🔋 Battery** | Battery level, charging animations | [**View**](./battery.md) |
 | **📈 Graph Cards** | Temp, humidity, etc | [**View**](./env_with_graph.md) |
 | **📟 Badge/Button** | Make custom Badge/Button  | [**View**](./badge_maker.md) |
+| **🌡️ Weather** | Climate & Weather | [**View**](./climate.md) |
+
 
 </div>
 
