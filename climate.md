@@ -24,7 +24,19 @@
 
 # Home Assistant Animated Climate Collection
 
-This [YouTube Video](https://youtu.be/xj5jhU1QD48) explains how to do it.
+># $${\color{#FF0000}Attention!!}$$
+>
+>Card V2 available [HERE](https://www.patreon.com/AnasBox/posts/weather-card-v2-164637169)
+>
+>Whats new:
+>- 7 Day forecast
+>- hourly forecast
+>- many new sensors
+>- translation support
+>- time and date
+>- general improvements
+
+<hr>
 
 ## Weather Card
 
@@ -35,6 +47,8 @@ This [YouTube Video](https://youtu.be/xj5jhU1QD48) explains how to do it.
     src="https://github.com/user-attachments/assets/c5346148-d37b-4174-82b1-ba9fcacedef3"
   />
 </p>
+
+This [YouTube Video](https://youtu.be/xj5jhU1QD48) explains how to do it.
 
 <hr>
 
