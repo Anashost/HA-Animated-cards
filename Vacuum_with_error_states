@@ -1,0 +1,181 @@
+vaccumtype: custom:mushroom-entity-card
+entity: sensor.vacuum_state
+tap_action:
+  action: toggle
+icon: mdi:robot-vacuum
+icon_color: blue
+name: Aspirateur
+secondary_info: state
+card_mod:
+  style:
+    mushroom-shape-icon$: >
+      {# ========== USER CONFIG ========== #}
+      {# true = number mode, false = state mode #}
+      {% set use_number = false %}
+
+      {# STATE MODE SETTINGS #}
+      {% set state_entity = 'binary_sensor.vacuum_state' %}
+      {% set active_value = 'on' %}
+
+      {# OPTIONAL: NUMBER MODE SETTINGS #}
+      {% set number_entity = 'sensor.plug_power' %}
+      {# '>' '<' '=' '>=' '<=' #}
+      {% set number_operator = '>' %}
+        
+      {% set threshold       = 0.0 %}
+
+      {# OPTIONAL: ERROR MODE -- Also complete line 148 for set error_state #}
+      {% set error_state = states('sensor.dock_or_vacuum__error') %}
+      {% set error_state_water_tank = ['water_empty', 'cleaning_tank_full_or_blocked'] %}
+      {% set error_state_waste_water_tank  = ['waste_water_tank_full', 'dirty_tank_latch_open'] %}
+      {% set error_others  = ['duct_blockage', 'maintenance_brush_jammed'] %}
+
+      {# ========== END USER CONFIG ====== #}
+
+      .shape {
+        {# ======== TRIGGER DECISION LOGIC ======== #}
+        {% if use_number %}
+          {% set num = states(number_entity) | float(0) %}
+
+          {% if number_operator == '>' %}
+            {% set trigger_active = (num > threshold) %}
+          {% elif number_operator == '<' %}
+            {% set trigger_active = (num < threshold) %}
+          {% elif number_operator == '=' %}
+            {% set trigger_active = (num == threshold) %}
+          {% elif number_operator == '>=' %}
+            {% set trigger_active = (num >= threshold) %}
+          {% elif number_operator == '<=' %}
+            {% set trigger_active = (num <= threshold) %}
+          {% else %}
+            {% set trigger_active = false %}
+          {% endif %}
+
+        {% else %}
+          {% set trigger_active = (states(state_entity) == active_value) %}
+        {% endif %}
+        {# =========== END TRIGGER LOGIC =========== #}
+
+        {% if trigger_active %}
+          --shape-animation: robo-path 3.4s linear infinite;
+          opacity: 1;
+        {% else %}
+          --shape-animation: none;
+          opacity: 0.7;
+        {% endif %}
+
+        transform-origin: 50% 50%;
+
+
+        {# --- ERROR ANIMATION AND COLOR MANAGEMENT --- #}
+        {% if error_state != 'ok' %}
+          background-color: rgba(255, 0, 0, 0.2) !important;
+          --icon-color: red !important;
+          
+          {% if error_state in error_state_water_tank %}
+            --shape-animation: pulse-red 1.5s infinite;
+          {% elif error_state in error_state_waste_water_tank %}
+            --shape-animation: wave 2s infinite;
+          {% elif error_state in error_others %}
+            --shape-animation: shake 0.5s infinite;
+          {% else %}
+            --shape-animation: simple-blink 2s infinite;
+          {% endif %}
+        {% elif trigger_active %}
+          --shape-animation: robo-path 3.4s linear infinite;
+        {% endif %}
+      }
+
+
+      {# --- BADGES CSS --- #}
+
+      .shape::after {        
+        {% if error_state != 'ok' %}
+          content: "";
+          position: absolute;
+          top: 30px;
+          right: -2px;
+          width: 12px;
+          height: 12px;
+          border-radius: 50% 50% 50% 0;
+          transform: rotate(-225deg);
+          z-index: 1;
+          
+          {% if error_state in ['water_empty', 'cleaning_tank_full_or_blocked'] %}
+            background-color: #2196F3;
+            box-shadow: 0 0 5px #2196F3;
+          {% elif error_state in ['waste_water_tank_full', 'dirty_tank_latch_open'] %}
+            background-color: #FFC107;
+            box-shadow: 0 0 5px #FFC107;
+          {% else %}
+            width: 0; height: 0;
+            background-color: transparent;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 12px solid #FF5722;
+            border-radius: 0;
+            transform: rotate(0deg);
+          {% endif %}
+        {% endif %}
+      }
+
+
+      @keyframes pulse-red { 0%, 100% { transform: scale(1); } 50% { transform:
+      scale(1.05); } }
+
+      @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform:
+      translateX(-2px); } 75% { transform: translateX(2px); } }
+
+      @keyframes wave { 0%, 100% { transform: rotate(-5deg); } 50% { transform:
+      rotate(5deg); } }
+
+      @keyframes simple-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+      @keyframes robo-path {
+         0%   { transform: translate(0, 0) scale(1); }
+        10%  { transform: translate(6px, -2px) rotate(8deg) scale(0.98); }
+        20%  { transform: translate(10px, 4px) rotate(-6deg) scale(1); }
+        30%  { transform: translate(4px, 8px) rotate(-14deg) scale(1.02); }
+        40%  { transform: translate(-6px, 10px) rotate(4deg) scale(0.98); }
+        50%  { transform: translate(-10px, 2px) rotate(16deg) scale(1.03); }
+        60%  { transform: translate(-6px, -6px) rotate(-8deg) scale(1); }
+        70%  { transform: translate(2px, -10px) rotate(10deg) scale(0.97); }
+        80%  { transform: translate(8px, -6px) rotate(-6deg) scale(1.02); }
+        90%  { transform: translate(4px, -2px) rotate(4deg) scale(1.01); }
+        100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      }
+    .: >
+      {% set error_state = states('sensor.sensor.dock_or_vacuum__error')
+      %}
+
+      mushroom-shape-icon {
+        --icon-size: 65px;
+        display: flex;
+        /* Marges ajustées pour éviter le débordement */
+        margin: -10px 15px 0px -10px !important;
+      }
+
+
+      ha-card {
+        /* Empêche tout élément de dépasser de la carte */
+        overflow: hidden !important;
+      }
+
+
+      mushroom-state-info:after {     
+        {% if error_state != 'ok' %}
+          content: "{{ error_state | replace('_', ' ') | capitalize }}";
+          color: red;
+          font-weight: bold;
+          display: block;
+        {% endif %}
+      }
+
+      {% if error_state != 'ok' %}
+
+      .secondary { display: none; }
+
+      {% endif %}
+grid_options:
+  columns: 5
+  rows: auto
