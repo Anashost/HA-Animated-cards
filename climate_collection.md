@@ -22,6 +22,7 @@
 </div>
 
 # Home Assistant Animated Climate Collection
+YouTube [Video](https://youtu.be/B0pU4OLGWRQ)
 
 <p align="center">
   <img width="420" alt="ezgif-5b0eb292c9c97807" src="https://github.com/user-attachments/assets/0624cc44-395a-4ffa-9edd-18fdf70f5aae" />
@@ -33,6 +34,12 @@
 
 <details>
 <summary><strong>Animated Weather Card (V3)</summary>
+  
+<br>
+
+- For instructions watch the V1 [video](https://youtu.be/xj5jhU1QD48) and the instructions [here](https://www.patreon.com/AnasBox/posts/weather-card-v3-164637169?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link) too.
+
+<br>
 
 ```yaml
 type: custom:button-card
