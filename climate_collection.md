@@ -1290,7 +1290,7 @@ extra_styles: |
 
 ```yaml
 type: custom:button-card
-entity: ""
+entity: 
 name: Air Purifier
 show_state: false
 show_label: true
