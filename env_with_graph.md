@@ -23,6 +23,10 @@
 
 # Home Assistant Animated Environment cards with graph.
 
+># $${\color{#FF0000}Attention!!}$$
+>
+>Updated Environment cards V2 available [HERE](https://github.com/Anashost/HA-Animated-cards/blob/main/env_with_graph_v2.md)
+
 This [YouTube Video](https://youtu.be/avAg9CR9TRc) explains how to do it.
 
 ## Preview
