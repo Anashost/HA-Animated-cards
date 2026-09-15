@@ -37,7 +37,7 @@ YouTube [Video](https://youtu.be/B0pU4OLGWRQ)
   
 <br>
 
-- For instructions watch the V1 [video](https://youtu.be/xj5jhU1QD48) and the instructions [here](https://www.patreon.com/AnasBox/posts/weather-card-v3-164637169?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link) too.
+- For in depth instructions watch the V1 video [Here](https://youtu.be/xj5jhU1QD48) and the written instructions [Here](https://www.patreon.com/AnasBox/posts/weather-card-v3-164637169) too.
 
 <br>
 
