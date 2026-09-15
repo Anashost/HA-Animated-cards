@@ -1,4 +1,3 @@
-
 <!-- anashost_support_badges_start -->
 [![Revolut.Me][revolut_me_shield]][revolut_me]
 [![PayPal.Me][paypal_me_shield]][paypal_me]
@@ -25,8 +24,8 @@
 # Home Assistant Animated Climate Collection
 
 <p align="center">
-  <img width="420" alt="ezgif-5b0eb292c9c97807" src="https://github.com/user-attachments/assets/1c86bfe1-4f05-4d84-a2c2-fae75325c1af" />
-  <img width="820" alt="ezgif-735c7b50daf994d9" src="https://github.com/user-attachments/assets/80a33f3c-bda5-4791-953a-58ace90b7ab6" />
+  <img width="420" alt="ezgif-5b0eb292c9c97807" src="https://github.com/user-attachments/assets/0624cc44-395a-4ffa-9edd-18fdf70f5aae" />
+  <img width="820" alt="ezgif-735c7b50daf994d9" src="https://github.com/user-attachments/assets/18c3fc83-df9e-4e9b-943e-8791e18428f0" />
 </p>
 
 
