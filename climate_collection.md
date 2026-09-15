@@ -98,11 +98,11 @@ variables:
     - THU
     - FRI
     - SAT
-  size_temp: '40'
-  size_cond: '30'
-  size_badges: '10'
-  size_date_time: '15'
-  size_forecast: '12'
+  size_temp: ''
+  size_cond: ''
+  size_badges: ''
+  size_date_time: ''
+  size_forecast: ''
 tap_action:
   action: none
 show_name: false
