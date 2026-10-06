@@ -24,18 +24,18 @@
 # Home Assistant Animated Appliances Cards V2
 
 >* Dishwasher
->
 >* Washing Machine
->
 >* Dryer
->
 >* Combo Washer & Dryer
->
 >* Fridge
+>* Oven
 
 This [YouTube Video](https://youtu.be/3Njo1-jht5w) explains how to do it.
 
 <img width="1280" height="720" alt="40-high" src="https://github.com/user-attachments/assets/266e4098-7268-4c91-9036-ce5a375aad8a" />
+
+<img width="850" alt="ezgif-29d7d8690b9de402" src="https://github.com/user-attachments/assets/f0abd17e-e31e-4562-95cc-0dd116efa8f7" />
+
 
 
  `Loading image... please wait`
@@ -1757,6 +1757,405 @@ extra_styles: |
 ```
 </details>
 
+<details>
+<summary><strong>6 - Smart Oven</summary>
+
+```yaml
+type: custom:button-card
+entity: sensor.smart_oven_status
+name: Smart Oven
+show_state: false
+show_label: true
+variables:
+  sensor_status: sensor.smart_oven_status
+  sensor_program: sensor.smart_oven_current_program
+  sensor_time_remaining: sensor.smart_oven_time_remaining
+  sensor_current_temp: sensor.smart_oven_current_temperature
+  sensor_target_temp: sensor.smart_oven_target_temperature
+  sensor_power: sensor.smart_oven_power
+  sensor_door: binary_sensor.smart_oven_door
+  progress_mode: temp
+  max_time: 120
+  state_idle: idle, off, standby, unknown, unavailable
+  state_heating: preheat, preheating, heating
+  state_baking: bake, baking, roast, roasting, cooking, running, on, convection
+  state_cooling: cooling, cool
+  state_done: finished, complete, end, done, ready
+  size_icon: 45px
+  size_shape: 65px
+  size_card_height: 95px
+  font_primary: 15px
+  font_secondary: 12px
+  font_badge: 11px
+styles:
+  card:
+    - --config-icon-size: '[[[ return variables.size_icon ]]]'
+    - --config-shape-size: '[[[ return variables.size_shape ]]]'
+    - --config-card-height: '[[[ return variables.size_card_height ]]]'
+    - --config-font-primary: '[[[ return variables.font_primary ]]]'
+    - --config-font-secondary: '[[[ return variables.font_secondary ]]]'
+    - --config-font-badge: '[[[ return variables.font_badge ]]]'
+    - height: var(--config-card-height) !important
+    - padding: 0px !important
+    - overflow: hidden
+    - position: relative
+    - transition: all 0.5s ease
+  grid:
+    - padding: 12px 16px
+    - height: 100%
+    - box-sizing: border-box
+    - grid-template-areas: '"i n" "i l"'
+    - grid-template-columns: var(--config-shape-size) 1fr
+    - grid-template-rows: auto auto
+    - align-content: center
+    - gap: 0px 12px
+    - position: relative
+  icon:
+    - width: var(--config-icon-size)
+    - height: var(--config-icon-size)
+    - color: var(--primary-text-color)
+    - z-index: 5
+    - filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5))
+  img_cell:
+    - width: var(--config-shape-size)
+    - height: var(--config-shape-size)
+    - border-radius: 50%
+    - border: 1px solid rgba(128, 128, 128, 0.2) !important
+    - position: relative
+    - overflow: hidden !important
+    - justify-self: start
+  name:
+    - justify-self: start
+    - font-size: var(--config-font-primary)
+    - font-weight: 500
+    - align-self: end
+    - margin-bottom: 2px
+    - position: relative
+  label:
+    - justify-self: start
+    - font-size: var(--config-font-secondary)
+    - opacity: 0.7
+    - align-self: start
+    - margin-top: 2px
+    - position: relative
+  custom_fields:
+    badge_prog:
+      - position: absolute
+      - right: 10px
+      - padding: 2px 10px
+      - border-radius: 12px
+      - font-size: var(--config-font-badge)
+      - font-weight: 600
+      - text-transform: uppercase
+      - letter-spacing: 0.5px
+      - white-space: nowrap
+      - max-width: 150px
+      - overflow: hidden
+      - text-overflow: ellipsis
+      - z-index: 1
+      - transition: all 0.4s ease
+    badge_group:
+      - position: absolute
+      - right: 10px
+      - display: flex
+      - gap: 6px
+      - flex-direction: row
+      - z-index: 5
+      - transition: all 0.4s ease
+    bar:
+      - position: absolute
+      - bottom: 0
+      - left: 0
+      - height: 3.5px
+      - width: 100%
+      - background: var(--appliance-bar-bg)
+      - clip-path: inset(0 calc(100% - var(--appliance-level)) 0 0)
+      - transition: clip-path 0.5s ease, background 0.5s ease
+tap_action:
+  action: more-info
+label: |
+  [[[ 
+    if (!entity) return 'Entity Setup Required';
+    let status = String(entity.state);
+    let _s = status.trim().toLowerCase();
+    
+    let state_idle    = (variables.state_idle || '').split(',').map(s => s.trim().toLowerCase());
+    let state_heating = (variables.state_heating || '').split(',').map(s => s.trim().toLowerCase());
+    let state_baking  = (variables.state_baking || '').split(',').map(s => s.trim().toLowerCase());
+    let state_cooling = (variables.state_cooling || '').split(',').map(s => s.trim().toLowerCase());
+    let state_done    = (variables.state_done || '').split(',').map(s => s.trim().toLowerCase());
+    if (/^\d+$/.test(_s)) {
+        if (state_idle.includes(_s))         status = state_idle.find(s => !/^\d+$/.test(s)) || status;
+        else if (state_heating.includes(_s)) status = state_heating.find(s => !/^\d+$/.test(s)) || status;
+        else if (state_baking.includes(_s))  status = state_baking.find(s => !/^\d+$/.test(s)) || status;
+        else if (state_cooling.includes(_s)) status = state_cooling.find(s => !/^\d+$/.test(s)) || status;
+        else if (state_done.includes(_s))    status = state_done.find(s => !/^\d+$/.test(s)) || status;
+    }
+
+    return status.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  ]]]
+icon: mdi:stove
+custom_fields:
+  badge_prog: ' '
+  badge_group: ' '
+  bar: ' '
+extra_styles: |
+  [[[
+    let ent_status   = variables.sensor_status;
+    let ent_program  = variables.sensor_program;
+    let ent_timerem  = variables.sensor_time_remaining;
+    let ent_currtemp = variables.sensor_current_temp;
+    let ent_targtemp = variables.sensor_target_temp;
+    let ent_power    = variables.sensor_power;
+    let ent_door     = variables.sensor_door;
+    let max_time     = variables.max_time;
+    let p_mode       = (variables.progress_mode || 'temp').toLowerCase();
+
+    let state_idle    = (variables.state_idle || '').split(',').map(s => s.trim().toLowerCase());
+    let state_heating = (variables.state_heating || '').split(',').map(s => s.trim().toLowerCase());
+    let state_baking  = (variables.state_baking || '').split(',').map(s => s.trim().toLowerCase());
+    let state_cooling = (variables.state_cooling || '').split(',').map(s => s.trim().toLowerCase());
+    let state_done    = (variables.state_done || '').split(',').map(s => s.trim().toLowerCase());
+
+    let status = states[ent_status] ? String(states[ent_status].state) : 'unknown';
+    let _s = status.trim().toLowerCase();
+    
+    if (/^\d+$/.test(_s)) {
+        if (state_idle.includes(_s))         status = state_idle.find(s => !/^\d+$/.test(s)) || status;
+        else if (state_heating.includes(_s)) status = state_heating.find(s => !/^\d+$/.test(s)) || status;
+        else if (state_baking.includes(_s))  status = state_baking.find(s => !/^\d+$/.test(s)) || status;
+        else if (state_cooling.includes(_s)) status = state_cooling.find(s => !/^\d+$/.test(s)) || status;
+        else if (state_done.includes(_s))    status = state_done.find(s => !/^\d+$/.test(s)) || status;
+    }
+
+    let s_lower = status.toLowerCase();
+
+    let is_idle    = state_idle.includes(s_lower);
+    let is_heating = state_heating.includes(s_lower);
+    let is_baking  = state_baking.includes(s_lower);
+    let is_cooling = state_cooling.includes(s_lower);
+    let is_done    = state_done.includes(s_lower);
+
+    let program = states[ent_program] ? String(states[ent_program].state).trim() : '';
+    let program_clean = (program && program.toLowerCase() !== 'unknown' && program.toLowerCase() !== 'none' && !/^\d+$/.test(program)) 
+        ? program.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : '';
+
+    let curr_temp = states[ent_currtemp] ? parseFloat(states[ent_currtemp].state) : NaN;
+    let targ_temp = states[ent_targtemp] ? parseFloat(states[ent_targtemp].state) : NaN;
+    let uom = states[ent_currtemp] && states[ent_currtemp].attributes ? states[ent_currtemp].attributes.unit_of_measurement : '°';
+    let is_f = String(uom).toLowerCase().includes('f');
+
+    let has_power = ent_power && states[ent_power] && !['unknown', 'unavailable'].includes(states[ent_power].state.toLowerCase());
+    let pwr = has_power ? Math.round(parseFloat(states[ent_power].state)) : 0;
+
+    let raw_val = states[ent_timerem] ? states[ent_timerem].state.trim() : '0';
+    let time_uom = states[ent_timerem] && states[ent_timerem].attributes ? states[ent_timerem].attributes.unit_of_measurement : '';
+    let time_rem = 0;
+
+    if (raw_val.includes('-') && raw_val.includes(':')) {
+        let end_ts = new Date(raw_val);
+        let now = new Date();
+        time_rem = end_ts > now ? Math.floor((end_ts - now) / 60000) : 0;
+    } else if (raw_val.includes(':')) {
+        let parts = raw_val.split(':');
+        if (parts.length === 3) time_rem = (parseInt(parts[0]) * 60) + parseInt(parts[1]);
+        else if (parts.length === 2) time_rem = (parseInt(parts[0]) * 60) + parseInt(parts[1]);
+    } else {
+        let parsed_val = parseFloat(raw_val) || 0;
+        let uom_lower = time_uom ? time_uom.toLowerCase() : '';
+
+        if (uom_lower === 'h' || uom_lower === 'hours') {
+            time_rem = Math.floor(parsed_val * 60); 
+        } else if (uom_lower === 'm' || uom_lower === 'min' || uom_lower === 'minutes') {
+            time_rem = Math.floor(parsed_val); 
+        } else {
+            if (parsed_val > 0 && parsed_val <= 10 && raw_val.includes('.')) {
+                time_rem = Math.floor(parsed_val * 60); 
+            } else {
+                time_rem = Math.floor(parsed_val);
+            }
+        }
+    }
+    time_rem = Math.max(0, time_rem);
+
+    let hours = Math.floor(time_rem / 60);
+    let mins = time_rem % 60;
+    let time_formatted = (time_rem > 0 && !is_idle && !is_done) ? `${hours}h ${mins.toString().padStart(2, '0')}m` : '';
+
+    let color = '158, 158, 158'; 
+    let flame_op = '0'; let flame_speed = '0s'; let icon_bg = 'rgba(128, 128, 128, 0.1)';
+
+    if (is_heating) { color = '255, 87, 34'; flame_op = '1'; flame_speed = '0.1s'; icon_bg = '#221111'; } 
+    else if (is_baking) { color = '244, 67, 54'; flame_op = '0.8'; flame_speed = '0.2s'; icon_bg = '#221111'; } 
+    else if (is_cooling) { color = '33, 150, 243'; icon_bg = 'rgba(33, 150, 243, 0.1)'; } 
+    else if (is_done) { color = '76, 175, 80'; icon_bg = 'rgba(76, 175, 80, 0.1)'; }
+
+    let progress = 0; 
+    let bar_bg = `rgb(${color})`; 
+
+    if (is_idle || is_done) {
+        progress = 0; 
+    } else {
+        if (p_mode === 'time') {
+            let max_t = Math.max(parseFloat(max_time), time_rem);
+            if (max_t > 0) {
+                progress = Math.floor(((max_t - time_rem) / max_t) * 100);
+            }
+        } else {
+            if (!isNaN(targ_temp) && targ_temp > 0 && !isNaN(curr_temp)) {
+                progress = Math.floor((curr_temp / targ_temp) * 100);
+                bar_bg = "linear-gradient(90deg, #FFEB3B 0%, #FFEB3B 15%, #FF9800 35%, #FF9800 50%, #E65100 70%, #E65100 80%, #F44336 100%)";
+            } else if (Math.max(parseFloat(max_time), time_rem) > 0) {
+                let max_t = Math.max(parseFloat(max_time), time_rem);
+                progress = Math.floor(((max_t - time_rem) / max_t) * 100);
+                bar_bg = `rgb(${color})`; 
+            }
+        }
+        progress = Math.max(2, Math.min(100, progress));
+    }
+
+    let door_state = (ent_door && states[ent_door]) ? states[ent_door].state.toLowerCase() : null;
+    let corner_color = '128, 128, 128'; let corner_display = 'none'; 
+    if (ent_door && door_state && door_state !== 'unknown' && door_state !== 'unavailable') {
+        corner_display = 'block';
+        if (door_state === 'on' || door_state === 'open') corner_color = '244, 67, 54'; 
+    }
+
+    let status_clean = status.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    let badge_prog = program_clean || status_clean;
+    if (has_power) {
+        badge_prog += ` • ${pwr}W`;
+    }
+
+    let badge_time = time_formatted;
+    let badge_temp = '';
+    
+    let is_dual_temp = false;
+    if (!isNaN(curr_temp) && curr_temp > 0) {
+        badge_temp = curr_temp + uom;
+        if ((is_heating || is_baking) && !isNaN(targ_temp) && targ_temp > 0) {
+            badge_temp += ' ➔ ' + targ_temp + uom;
+            is_dual_temp = true;
+        }
+    }
+
+    let offset_y = 10;
+    let pos_prog = -1; let pos_group = -1;
+
+    if (badge_prog) { 
+        pos_prog = offset_y; 
+        offset_y += 28; 
+    }
+    if (badge_time || badge_temp) {
+        pos_group = offset_y;
+    }
+
+    let temp_color = '158, 158, 158';
+    if (!isNaN(curr_temp) && curr_temp > 0) {
+        let warm_threshold = is_f ? 120 : 50;
+        let hot_threshold = is_f ? 300 : 150;
+        if (curr_temp >= hot_threshold) temp_color = '244, 67, 54'; 
+        else if (curr_temp >= warm_threshold) temp_color = '255, 152, 0'; 
+    }
+
+    let targ_color = color;
+
+    let b_border = `1px solid rgba(128,128,128, 0.2)`;
+    let b_br_time = `2px solid rgb(${color})`;
+
+    let b_bg_temp = `rgba(${temp_color}, 0.15)`;
+    let b_bl_temp = b_border;
+    let b_br_temp = `2px solid rgb(${temp_color})`;
+
+    if (is_dual_temp) {
+        b_bg_temp = `linear-gradient(90deg, rgba(${temp_color}, 0.15) 0%, rgba(${targ_color}, 0.15) 100%)`;
+        b_bl_temp = `2px solid rgb(${temp_color})`;
+        b_br_temp = `2px solid rgb(${targ_color})`;
+    }
+
+    return `
+      #card {
+        --appliance-color: ${color};
+        --appliance-level: ${progress}%;
+        --appliance-bar-bg: ${bar_bg};
+        --appliance-bg: ${icon_bg};
+        --oven-flame-op: ${flame_op};
+        --oven-flame-speed: ${flame_speed};
+        --door-corner-color: rgb(${corner_color});
+        --door-corner-display: ${corner_display};
+      }
+
+      #card::after {
+        content: ''; display: var(--door-corner-display); position: absolute;
+        top: -0.5px; left: -0.5px; opacity: 0.9; width: 15px; height: 15px;
+        border-top: 5px solid var(--door-corner-color); border-left: 5px solid var(--door-corner-color);
+        border-top-left-radius: var(--ha-card-border-radius, 12px); pointer-events: none; transition: border-color 0.3s ease;
+      }
+
+      #img-cell { background: var(--appliance-bg) !important; transition: background 0.5s ease; }
+
+      #img-cell::before {
+        content: ""; position: absolute; left: 50%; bottom: -60%; width: 80%; height: 80%;
+        background: radial-gradient(circle at center, #ffff00 0%, #ff9800 100%);
+        transform: translateX(-50%) rotate(45deg); box-shadow: 0 0 20px #ff5722;
+        border-radius: 20px 0 20px 0; z-index: 1; opacity: var(--oven-flame-op);
+        animation: flame-burn var(--oven-flame-speed) infinite alternate;
+        display: ${flame_op === '0' ? 'none' : 'block'};
+      }
+
+      #img-cell::after {
+        content: ""; position: absolute; left: 45%; bottom: -65%; width: 90%; height: 90%;
+        background: rgba(255, 87, 34, 0.6); transform: translateX(-50%) rotate(45deg);
+        border-radius: 30px 0 30px 0; z-index: 0; opacity: var(--oven-flame-op);
+        animation: flame-burn-two 0.3s infinite alternate-reverse;
+        display: ${flame_op === '0' ? 'none' : 'block'};
+      }
+
+      #badge_prog {
+        top: ${pos_prog}px; display: ${pos_prog > -1 ? 'block' : 'none'};
+        background: rgba(${color}, 0.15); color: rgb(var(--appliance-color));
+        border: 1px solid rgba(var(--appliance-color), 0.3);
+      }
+      #badge_prog::before { content: "${badge_prog}"; } 
+
+      #badge_group {
+        top: ${pos_group}px; display: ${pos_group > -1 ? 'flex' : 'none'};
+      }
+
+      #badge_group::before {
+        content: "${badge_time}"; display: ${badge_time ? 'block' : 'none'};
+        padding: 4px 8px; font-size: 10px; letter-spacing: 0.5px; white-space: nowrap; 
+        opacity: 0.9; text-transform: uppercase; font-weight: 500;
+        background: rgba(${color}, 0.15); color: var(--primary-text-color, #fff);
+        border-top: ${b_border}; border-bottom: ${b_border}; 
+        border-left: ${b_border}; border-right: ${b_br_time};
+        border-radius: 6px !important;
+      }
+
+      #badge_group::after {
+        content: "${badge_temp}"; display: ${badge_temp ? 'block' : 'none'};
+        padding: 4px 8px; font-size: 10px; letter-spacing: 0.5px; white-space: nowrap; 
+        opacity: 0.9; text-transform: uppercase; font-weight: 500;
+        background: ${b_bg_temp}; color: var(--primary-text-color, #fff);
+        border-top: ${b_border}; border-bottom: ${b_border}; 
+        border-left: ${b_bl_temp}; border-right: ${b_br_temp};
+        border-radius: 6px !important;
+      }
+
+      @keyframes flame-burn { 
+        0% { transform: translateX(-50%) rotate(45deg) scale(1.0); } 
+        100% { transform: translateX(-50%) rotate(45deg) scale(0.95); } 
+      }
+      @keyframes flame-burn-two { 
+        0% { transform: translateX(-50%) rotate(45deg) scale(0.9); } 
+        100% { transform: translateX(-50%) rotate(45deg) scale(1.0); } 
+      }
+    `;
+  ]]]
+
+```
+</details>
+
 ---
 
 # Cards (Dumb)
@@ -3463,6 +3862,367 @@ extra_styles: |
 </details>
 
 ---
+
+<details>
+<summary><strong>6 - Oven (smart plug)</summary>
+
+```yaml
+type: custom:button-card
+entity: binary_sensor.oven_active_delay
+name: Dumb Oven
+show_state: false
+show_label: true
+variables:
+  sensor_helper: binary_sensor.oven_active_delay
+  sensor_plug: switch.aqara_plug_h2
+  sensor_power: sensor.aqara_plug_h2_power
+  sensor_temp: sensor.oven_current_temperature
+  sensor_door: binary_sensor.oven_door
+  thresh_heat: 1500
+  target_temp: 250
+  size_icon: 45px
+  size_shape: 65px
+  size_card_height: 95px
+  font_primary: 15px
+  font_secondary: 12px
+  font_badge: 11px
+styles:
+  card:
+    - --config-icon-size: '[[[ return variables.size_icon ]]]'
+    - --config-shape-size: '[[[ return variables.size_shape ]]]'
+    - --config-card-height: '[[[ return variables.size_card_height ]]]'
+    - --config-font-primary: '[[[ return variables.font_primary ]]]'
+    - --config-font-secondary: '[[[ return variables.font_secondary ]]]'
+    - --config-font-badge: '[[[ return variables.font_badge ]]]'
+    - height: var(--config-card-height) !important
+    - padding: 0px !important
+    - overflow: hidden
+    - position: relative
+    - transition: all 0.5s ease
+  grid:
+    - padding: 12px 16px
+    - height: 100%
+    - box-sizing: border-box
+    - grid-template-areas: '"i n" "i l"'
+    - grid-template-columns: var(--config-shape-size) 1fr
+    - grid-template-rows: auto auto
+    - align-content: center
+    - gap: 0px 12px
+    - position: relative
+  icon:
+    - width: var(--config-icon-size)
+    - height: var(--config-icon-size)
+    - color: var(--primary-text-color)
+    - z-index: 5
+    - filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5))
+  img_cell:
+    - width: var(--config-shape-size)
+    - height: var(--config-shape-size)
+    - border-radius: 50%
+    - border: 1px solid rgba(128, 128, 128, 0.2) !important
+    - position: relative
+    - overflow: hidden !important
+    - justify-self: start
+  name:
+    - justify-self: start
+    - font-size: var(--config-font-primary)
+    - font-weight: 500
+    - align-self: end
+    - margin-bottom: 2px
+    - position: relative
+  label:
+    - justify-self: start
+    - font-size: var(--config-font-secondary)
+    - opacity: 0.7
+    - align-self: start
+    - margin-top: 2px
+    - position: relative
+  custom_fields:
+    badge_prog:
+      - position: absolute
+      - right: 10px
+      - padding: 2px 10px
+      - border-radius: 12px
+      - font-size: var(--config-font-badge)
+      - font-weight: 600
+      - text-transform: uppercase
+      - letter-spacing: 0.5px
+      - white-space: nowrap
+      - max-width: 150px
+      - overflow: hidden
+      - text-overflow: ellipsis
+      - z-index: 1
+      - transition: all 0.4s ease
+    badge_group:
+      - position: absolute
+      - right: 10px
+      - display: flex
+      - gap: 6px
+      - flex-direction: row
+      - z-index: 5
+      - transition: all 0.4s ease
+    bar:
+      - position: absolute
+      - bottom: 0
+      - left: 0
+      - height: 3.5px
+      - width: 100%
+      - background: >-
+          linear-gradient(90deg, #FFEB3B 0%, #FFEB3B 15%, #FF9800 35%, #FF9800
+          50%, #E65100 70%, #E65100 80%, #F44336 100%)
+      - clip-path: inset(0 calc(100% - var(--appliance-level)) 0 0)
+      - transition: clip-path 0.5s ease
+tap_action:
+  action: more-info
+label: |
+  [[[ 
+    let helper = states[variables.sensor_helper];
+    if (helper && helper.state === 'on') return 'Running';
+    return 'Not Running';
+  ]]]
+icon: mdi:stove
+custom_fields:
+  badge_prog: ' '
+  badge_group: ' '
+  bar: ' '
+extra_styles: |
+  [[[
+    let ent_sw     = variables.sensor_plug;
+    let ent_pwr    = variables.sensor_power;
+    let ent_temp   = variables.sensor_temp;
+    let ent_door   = variables.sensor_door;
+    let ent_helper = variables.sensor_helper;
+    
+    let t_heat     = parseFloat(variables.thresh_heat);
+    let targ       = parseFloat(variables.target_temp);
+
+    let sw_state   = states[ent_sw] ? states[ent_sw].state.toLowerCase() : 'unknown';
+    let pwr_raw    = states[ent_pwr] ? parseFloat(states[ent_pwr].state) : NaN;
+    let temp_raw   = states[ent_temp] ? parseFloat(states[ent_temp].state) : NaN;
+    let uom        = states[ent_temp] && states[ent_temp].attributes ? states[ent_temp].attributes.unit_of_measurement : '°';
+    let is_f       = String(uom).toLowerCase().includes('f');
+
+    let helper_obj = states[ent_helper];
+    let is_running = helper_obj && helper_obj.state === 'on';
+
+    let pwr        = isNaN(pwr_raw) ? 0 : Math.round(pwr_raw);
+    let temp       = isNaN(temp_raw) ? 0 : temp_raw;
+
+    let time_str = '';
+    if (is_running && helper_obj.last_changed) {
+        let start_time = new Date(helper_obj.last_changed);
+        let now = new Date();
+        let diff_sec = Math.max(0, Math.floor((now - start_time) / 1000));
+        let h = Math.floor(diff_sec / 3600);
+        let m = Math.floor((diff_sec % 3600) / 60);
+        time_str = diff_sec > 60 ? `${h}h ${m.toString().padStart(2, '0')}m` : 'Started';
+    }
+
+    let is_offline = sw_state === 'off' || sw_state === 'unavailable' || sw_state === 'unknown';
+    let is_heating = is_running && pwr >= t_heat && !is_offline;
+    let is_active  = is_running && pwr < t_heat && !is_offline;
+    let is_idle    = !is_running && !is_offline;
+
+    let status_text = 'Idle';
+    let color       = '158, 158, 158'; 
+    let flame_op    = '0'; 
+    let flame_speed = '0s'; 
+    let icon_bg     = 'rgba(128, 128, 128, 0.1)';
+
+    if (is_offline) {
+        status_text = 'Plug Off';
+        color       = '244, 67, 54'; // Red
+    } else if (is_heating) {
+        status_text = 'Heating';
+        color       = '244, 67, 54'; // Red
+        flame_op    = '1'; 
+        flame_speed = '0.1s'; 
+        icon_bg     = '#221111';
+    } else if (is_active) {
+        status_text = 'Active';
+        color       = '255, 152, 0'; // Orange
+        flame_op    = '0.6'; 
+        flame_speed = '0.3s'; 
+        icon_bg     = '#221111';
+    } else if (is_idle) {
+        status_text = 'Idle';
+        color       = '158, 158, 158'; 
+    }
+
+    let door_state = (ent_door && states[ent_door]) ? states[ent_door].state.toLowerCase() : null;
+    let corner_color = '158, 158, 158'; 
+    let corner_display = 'block'; 
+
+    if (ent_door && door_state && door_state !== 'unknown' && door_state !== 'unavailable') {
+        if (door_state === 'on' || door_state === 'open') {
+            corner_color = '244, 67, 54'; 
+        }
+    } else {
+        corner_display = 'none'; 
+    }
+
+    let badge_prog = !is_offline ? `${status_text} • ${pwr}W` : status_text;
+    let badge_time = time_str;
+    let badge_temp = '';
+    
+    let is_dual_temp = false;
+    if (temp > 0) {
+        badge_temp = `${temp}${uom}`;
+        if (!is_offline && !isNaN(targ) && targ > 0) {
+            badge_temp += ` ➔ ${targ}${uom}`;
+            is_dual_temp = true;
+        }
+    }
+
+    let progress = 0;
+    if (is_running && !is_offline && temp > 0 && targ > 0) {
+        progress = Math.floor((temp / targ) * 100);
+        progress = Math.max(2, Math.min(100, progress)); 
+    }
+
+    let offset_y = 10;
+    let pos_prog = -1; let pos_group = -1;
+
+    if (badge_prog) { 
+        pos_prog = offset_y; 
+        offset_y += 28; 
+    }
+    if (badge_time || badge_temp) {
+        pos_group = offset_y;
+    }
+
+    let temp_color = '158, 158, 158';
+    if (temp > 0) {
+        let warm_threshold = is_f ? 120 : 50;
+        let hot_threshold  = is_f ? 300 : 150;
+        if (temp >= hot_threshold) temp_color = '244, 67, 54'; 
+        else if (temp >= warm_threshold) temp_color = '255, 152, 0'; 
+    }
+
+    let targ_color = '158, 158, 158';
+    if (is_running) {
+        targ_color = '244, 67, 54'; 
+    }
+
+    let b_border = `1px solid rgba(128,128,128, 0.2)`;
+    let b_br_time = `2px solid rgb(${color})`;
+
+    let b_bg_temp = `rgba(${temp_color}, 0.15)`;
+    let b_bl_temp = b_border;
+    let b_br_temp = `2px solid rgb(${temp_color})`;
+
+    if (is_dual_temp) {
+        b_bg_temp = `linear-gradient(90deg, rgba(${temp_color}, 0.15) 0%, rgba(${targ_color}, 0.15) 100%)`;
+        b_bl_temp = `2px solid rgb(${temp_color})`;
+        b_br_temp = `2px solid rgb(${targ_color})`;
+    }
+
+    return `
+      #card {
+        --appliance-color: ${color};
+        --appliance-level: ${progress}%;
+        --appliance-bg: ${icon_bg};
+        --oven-flame-op: ${flame_op};
+        --oven-flame-speed: ${flame_speed};
+        --door-corner-color: rgb(${corner_color});
+        --door-corner-display: ${corner_display};
+      }
+
+      #card::after {
+        content: ''; display: var(--door-corner-display); position: absolute;
+        top: -0.5px; left: -0.5px; opacity: 0.9; width: 15px; height: 15px;
+        border-top: 5px solid var(--door-corner-color); border-left: 5px solid var(--door-corner-color);
+        border-top-left-radius: var(--ha-card-border-radius, 12px); pointer-events: none; transition: border-color 0.3s ease;
+      }
+
+      #img-cell { background: var(--appliance-bg) !important; transition: background 0.5s ease; }
+
+      #img-cell::before {
+        content: ""; position: absolute; left: 50%; bottom: -60%; width: 80%; height: 80%;
+        background: radial-gradient(circle at center, #ffff00 0%, #ff9800 100%);
+        transform: translateX(-50%) rotate(45deg); box-shadow: 0 0 20px #ff5722;
+        border-radius: 20px 0 20px 0; z-index: 1; opacity: var(--oven-flame-op);
+        animation: flame-burn var(--oven-flame-speed) infinite alternate;
+        display: ${flame_op === '0' ? 'none' : 'block'};
+      }
+
+      #img-cell::after {
+        content: ""; position: absolute; left: 45%; bottom: -65%; width: 90%; height: 90%;
+        background: rgba(255, 87, 34, 0.6); transform: translateX(-50%) rotate(45deg);
+        border-radius: 30px 0 30px 0; z-index: 0; opacity: var(--oven-flame-op);
+        animation: flame-burn-two 0.3s infinite alternate-reverse;
+        display: ${flame_op === '0' ? 'none' : 'block'};
+      }
+
+      #badge_prog {
+        top: ${pos_prog}px; display: ${pos_prog > -1 ? 'block' : 'none'};
+        background: rgba(${color}, 0.15); color: rgb(var(--appliance-color));
+        border: 1px solid rgba(var(--appliance-color), 0.3);
+      }
+      #badge_prog::before { content: "${badge_prog}"; } 
+
+      #badge_group {
+        top: ${pos_group}px; display: ${pos_group > -1 ? 'flex' : 'none'};
+      }
+
+      #badge_group::before {
+        content: "${badge_time}"; display: ${badge_time ? 'block' : 'none'};
+        padding: 4px 8px; font-size: 10px; letter-spacing: 0.5px; white-space: nowrap; 
+        opacity: 0.9; text-transform: uppercase; font-weight: 500;
+        background: rgba(${color}, 0.15); color: var(--primary-text-color, #fff);
+        border-top: ${b_border}; border-bottom: ${b_border}; 
+        border-left: ${b_border}; border-right: ${b_br_time};
+        border-radius: 6px !important;
+      }
+
+      #badge_group::after {
+        content: "${badge_temp}"; display: ${badge_temp ? 'block' : 'none'};
+        padding: 4px 8px; font-size: 10px; letter-spacing: 0.5px; white-space: nowrap; 
+        opacity: 0.9; text-transform: uppercase; font-weight: 500;
+        background: ${b_bg_temp}; color: var(--primary-text-color, #fff);
+        border-top: ${b_border}; border-bottom: ${b_border}; 
+        border-left: ${b_bl_temp}; border-right: ${b_br_temp};
+        border-radius: 6px !important;
+      }
+
+      @keyframes flame-burn { 
+        0% { transform: translateX(-50%) rotate(45deg) scale(1.0); } 
+        100% { transform: translateX(-50%) rotate(45deg) scale(0.95); } 
+      }
+      @keyframes flame-burn-two { 
+        0% { transform: translateX(-50%) rotate(45deg) scale(0.9); } 
+        100% { transform: translateX(-50%) rotate(45deg) scale(1.0); } 
+      }
+    `;
+  ]]]
+
+```
+</details>
+
+<details>
+<summary><strong>Dumb Oven (Helper/Template)</summary>
+
+```yaml
+  - binary_sensor:
+      - name: "Oven Active Delay"
+        unique_id: oven_active_delay
+        device_class: running
+        icon: mdi:stove
+        # Change the power entity below to match your actual smart plug power entity
+        state: >
+          {% set power = states('sensor.aqara_plug_h2_power') %}
+          {% if power in ['unavailable', 'unknown', 'none'] %}
+            {{ this.state }} 
+          {% else %}
+            {{ power | float(0) > 10 }}
+          {% endif %}
+        delay_off: "00:10:00"
+```
+</details>
+
+---
+
+
 
 
 [paypal_me_shield]: https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white
