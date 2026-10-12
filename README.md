@@ -40,7 +40,7 @@
 | **📈 Graph Cards** | Temp, humidity, etc | [**View**](./env_with_graph.md) |
 | **📟 Badge/Button** | Make custom Badge/Button  | [**View**](./badge_maker.md) |
 | **🌡️Climate** | Climate & Weather | [**View**](./climate_collection.md) |
-
+| **🗂️Batch 6** | Batch 6 Cards | [**View**](./collections/batch6.md) |
 
 </div>
 
